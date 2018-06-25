@@ -80,6 +80,14 @@ async.timesSeries(
 
     (function() {
       var array = newArray();
+      var option = function(value) { return value.number === 1 };
+      suite.add('map function', function() {
+        array.map(option);
+      });
+    })();
+
+    (function() {
+      var array = newArray();
       suite.add('map for', function() {
         var results = [];
         for (var i = 0; i < array.length; i++) {
@@ -109,6 +117,14 @@ async.timesSeries(
       var option = ['number', 1];
       suite.add('lodash@4.17.10 find matchesProperty', function() {
         _.find(array, option);
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      var option = function(value) { return value.number === 1 };
+      suite.add('find function', function() {
+        array.find(option);
       });
     })();
 
