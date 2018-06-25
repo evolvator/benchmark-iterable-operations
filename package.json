@@ -5,6 +5,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "array-filter": "^1.0.0",
     "async": "^2.6.1",
     "benchmark": "^2.1.4",
     "lodash": "^4.17.10",

@@ -3,6 +3,8 @@ var tb = require('travis-benchmark');
 var _ = require('lodash');
 var async = require('async');
 
+var arrayFilter = require('array-filter');
+
 async.timesSeries(
   15,
   function(t, next) {
@@ -49,6 +51,14 @@ async.timesSeries(
             results.push(array[i]);
           }
         }
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      var option = function(value) { return value.number === 1 };
+      suite.add('array-filter@1.0.0 filter function', function() {
+        arrayFilter(array, option);
       });
     })();
 
