@@ -172,6 +172,25 @@ async.timesSeries(
       });
     })();
 
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 filter+map', function() {
+        _.map(_.filter(array, function(value) { return value.number === 1; }), function(value) { return value.number; });
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('filter+map', function() {
+        var results = [];
+        for (var i = 0; i < array.length; i++) {
+          if (array[i].number === 1) {
+            results.push(array[i].number);
+          }
+        }
+      });
+    })();
+
     tb.wrapSuite(suite, () => next());
     suite.run({ async: true });
   }
