@@ -3,6 +3,9 @@ var tb = require('travis-benchmark');
 var _ = require('lodash');
 var async = require('async');
 
+var underscore = require('underscore');
+var underscoreContrib = require('underscore-contrib');
+
 var arrayFilter = require('array-filter');
 
 async.timesSeries(
@@ -64,6 +67,26 @@ async.timesSeries(
 
     (function() {
       var array = newArray();
+      var option = function(value) { return value.number === 1 };
+      suite.add('underscore@1.9.1 filter function', function() {
+        underscore.filter(array, option);
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      var option = function(value) { return value.number === 1 };
+      var list = underscoreContrib.iterators.List(array);
+      suite.add('underscore-contrib@0.3.0 filter function', function() {
+        var value, values = [];
+        while (value = underscoreContrib.iterators.filter(list, option)) {
+          values.push(value);
+        }
+      });
+    })();
+
+    (function() {
+      var array = newArray();
       var option = function(value) { return value.number; };
       suite.add('lodash@4.17.10 map function', function() {
         _.map(array, option);
@@ -80,7 +103,7 @@ async.timesSeries(
 
     (function() {
       var array = newArray();
-      var option = function(value) { return value.number === 1 };
+      var option = function(value) { return value.number; };
       suite.add('map function', function() {
         array.map(option);
       });
@@ -92,6 +115,26 @@ async.timesSeries(
         var results = [];
         for (var i = 0; i < array.length; i++) {
           results.push(array[i].number);
+        }
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      var option = function(value) { return value.number; };
+      suite.add('underscore@1.9.1 map function', function() {
+        underscore.map(array, option);
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      var option = function(value) { return value.number; };
+      var list = underscoreContrib.iterators.List(array);
+      suite.add('underscore-contrib@0.3.0 map function', function() {
+        var value, values = [];
+        while (value = underscoreContrib.iterators.map(list, option)) {
+          values.push(value);
         }
       });
     })();
@@ -138,6 +181,23 @@ async.timesSeries(
             break;
           }
         }
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      var option = function(value) { return value.number === 1 };
+      suite.add('underscore@1.9.1 find function', function() {
+        underscore.find(array, option);
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      var option = function(value) { return value.number === 1 };
+      var list = underscoreContrib.iterators.List(array);
+      suite.add('underscore-contrib@0.3.0 find function', function() {
+        underscoreContrib.iterators.find(list, option);
       });
     })();
 
