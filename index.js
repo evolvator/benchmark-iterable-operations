@@ -10,65 +10,169 @@ async.timesSeries(
   function(t, next) {
     var count = Math.pow(2, t);
     var suite = new Benchmark.Suite(`${count} array.length`);
+    
+    function newArray() {
+      return _.times(count, function(t) {
+        var str = _.toString(t);
+        return { number: str[str.length - 1] };
+      });
+    };
 
-    var array = _.times(count, function(t) {
-      return t;
-    });
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 filter function', function() {
+        _.filter(array, function(value) { return value.number === 1 });
+      });
+    })();
 
-    suite.add('for', function() {
-      for (var i = 0; i < count; i++) {
-        array[i];
-      };
-    });
-    suite.add('while', function() {
-      var i = 0;
-      while (i < count) {
-        array[i];
-        i++;
-      }
-    });
-    suite.add('for-in', function() {
-      for (var i in array) {
-        array[i];
-      }
-    });
-    suite.add('for-of', function() {
-      for (var f of array) {
-        f;
-      }
-    });
-    suite.add('forEach', function() {
-      array.forEach(function(value, index) {
-        value;
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 filter matches', function() {
+        _.filter(array, { number: 1 });
       });
-    });
-    suite.add('lodash@4.17.10 forEach', function() {
-      _.forEach(array, function(value, index) {
-        value;
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 filter matchesProperty', function() {
+        _.filter(array, ['number', 1]);
       });
-    });
-    suite.add('async@2.6.1 forEachOf', function() {
-      async.forEachOf(array, function(value, index, next) {
-        value;
-        next();
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('map for', function() {
+        var results = [];
+        for (var i = 0; i < array.length; i++) {
+          if (array[i].number === 1) {
+            results.push(array[i]);
+          }
+        }
       });
-    });
-    suite.add('async@2.6.1 forEachOfSeries', function() {
-      async.forEachOfSeries(array, function(value, index, next) {
-        value;
-        next();
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 map function', function() {
+        _.map(array, function(value) { return value.number; });
       });
-    });
-    suite.add('foreach@2.0.5', function() {
-      foreach(array, function(value, index) {
-        value;
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 map property', function() {
+        _.map(array, 'number');
       });
-    });
-    suite.add('array-each@1.0.1', function() {
-      arrayEach(array, function(value, index) {
-        value;
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 map property', function() {
+        _.map(array, 'number');
       });
-    });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('map for', function() {
+        var results = [];
+        for (var i = 0; i < array.length; i++) {
+          results.push(array[i].number);
+        }
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 find function', function() {
+        _.find(array, function(value) { return value.number === 1 });
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 find matches', function() {
+        _.find(array, { number: 1 });
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 find matchesProperty', function() {
+        _.find(array, ['number', 1]);
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('find for', function() {
+        var founded;
+        for (var i = 0; i < array.length; i++) {
+          if (array[i].number === 1) {
+            founded = array[i];
+            break;
+          }
+        }
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 remove function', function() {
+        _.remove(array, function(value) { return value.number === 1 });
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 remove matches', function() {
+        _.remove(array, { number: 1 });
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 remove matchesProperty', function() {
+        _.remove(array, ['number', 1]);
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('remove for', function() {
+        for (var i = 0; i < array.length; i++) {
+          if (array[i] === 2) {
+            array.splice(i, 1);
+            i--;
+          }
+        }
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 sortBy function', function() {
+        _.sortBy(array, function(value) { return value.number; });
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('lodash@4.17.10 sortBy array', function() {
+        _.sortBy(array, ['number']);
+      });
+    })();
+
+    (function() {
+      var array = newArray();
+      suite.add('sort', function() {
+        array.sort(function(a,b) {
+          if (a.number > b.number) return 1;
+          if (a.number < b.number) return -1;
+          return 0;
+        });
+      });
+    })();
 
     tb.wrapSuite(suite, () => next());
     suite.run({ async: true });
