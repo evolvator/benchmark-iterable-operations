@@ -65,13 +65,6 @@ async.timesSeries(
 
     (function() {
       var array = newArray();
-      suite.add('lodash@4.17.10 map property', function() {
-        _.map(array, 'number');
-      });
-    })();
-
-    (function() {
-      var array = newArray();
       suite.add('map for', function() {
         var results = [];
         for (var i = 0; i < array.length; i++) {
