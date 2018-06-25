@@ -18,22 +18,25 @@ async.timesSeries(
 
     (function() {
       var array = newArray();
+      var option = function(value) { return value.number === 1 };
       suite.add('lodash@4.17.10 filter function', function() {
-        _.filter(array, function(value) { return value.number === 1 });
+        _.filter(array, option);
       });
     })();
 
     (function() {
       var array = newArray();
+      var option = { number: 1 };
       suite.add('lodash@4.17.10 filter matches', function() {
-        _.filter(array, { number: 1 });
+        _.filter(array, option);
       });
     })();
 
     (function() {
       var array = newArray();
+      var option = ['number', 1];
       suite.add('lodash@4.17.10 filter matchesProperty', function() {
-        _.filter(array, ['number', 1]);
+        _.filter(array, option);
       });
     })();
 
@@ -51,15 +54,17 @@ async.timesSeries(
 
     (function() {
       var array = newArray();
+      var option = function(value) { return value.number; };
       suite.add('lodash@4.17.10 map function', function() {
-        _.map(array, function(value) { return value.number; });
+        _.map(array, option);
       });
     })();
 
     (function() {
       var array = newArray();
+      var option = 'number';
       suite.add('lodash@4.17.10 map property', function() {
-        _.map(array, 'number');
+        _.map(array, option);
       });
     })();
 
@@ -75,22 +80,25 @@ async.timesSeries(
 
     (function() {
       var array = newArray();
+      var option = function(value) { return value.number === 1 };
       suite.add('lodash@4.17.10 find function', function() {
-        _.find(array, function(value) { return value.number === 1 });
+        _.find(array, option);
       });
     })();
 
     (function() {
       var array = newArray();
+      var option = { number: 1 };
       suite.add('lodash@4.17.10 find matches', function() {
-        _.find(array, { number: 1 });
+        _.find(array, option);
       });
     })();
 
     (function() {
       var array = newArray();
+      var option = ['number', 1];
       suite.add('lodash@4.17.10 find matchesProperty', function() {
-        _.find(array, ['number', 1]);
+        _.find(array, option);
       });
     })();
 
@@ -109,22 +117,25 @@ async.timesSeries(
 
     (function() {
       var array = newArray();
+      var option = function(value) { return value.number === 1 };
       suite.add('lodash@4.17.10 remove function', function() {
-        _.remove(array, function(value) { return value.number === 1 });
+        _.remove(array, option);
       });
     })();
 
     (function() {
       var array = newArray();
+      var option = { number: 1 };
       suite.add('lodash@4.17.10 remove matches', function() {
-        _.remove(array, { number: 1 });
+        _.remove(array, option);
       });
     })();
 
     (function() {
       var array = newArray();
+      var option = ['number', 1];
       suite.add('lodash@4.17.10 remove matchesProperty', function() {
-        _.remove(array, ['number', 1]);
+        _.remove(array, option);
       });
     })();
 
@@ -142,33 +153,38 @@ async.timesSeries(
 
     (function() {
       var array = newArray();
+      var option = function(value) { return value.number; };
       suite.add('lodash@4.17.10 sortBy function', function() {
-        _.sortBy(array, function(value) { return value.number; });
+        _.sortBy(array, option);
       });
     })();
 
     (function() {
       var array = newArray();
+      var option = ['number'];
       suite.add('lodash@4.17.10 sortBy array', function() {
-        _.sortBy(array, ['number']);
+        _.sortBy(array, option);
       });
     })();
 
     (function() {
       var array = newArray();
+      var option = function(a,b) {
+        if (a.number > b.number) return 1;
+        if (a.number < b.number) return -1;
+        return 0;
+      };
       suite.add('sort', function() {
-        array.sort(function(a,b) {
-          if (a.number > b.number) return 1;
-          if (a.number < b.number) return -1;
-          return 0;
-        });
+        array.sort(option);
       });
     })();
 
     (function() {
       var array = newArray();
+      var option1 = function(value) { return value.number === 1; };
+      var option2 = function(value) { return value.number; };
       suite.add('lodash@4.17.10 filter+map', function() {
-        _.map(_.filter(array, function(value) { return value.number === 1; }), function(value) { return value.number; });
+        _.map(_.filter(array, option1), option2);
       });
     })();
 
