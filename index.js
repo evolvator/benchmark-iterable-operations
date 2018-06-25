@@ -39,7 +39,7 @@ async.timesSeries(
 
     (function() {
       var array = newArray();
-      suite.add('map for', function() {
+      suite.add('filter for', function() {
         var results = [];
         for (var i = 0; i < array.length; i++) {
           if (array[i].number === 1) {
