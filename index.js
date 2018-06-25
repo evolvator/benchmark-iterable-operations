@@ -216,7 +216,7 @@ async.timesSeries(
 
     (function() {
       var array = newArray();
-      suite.add('filter+map', function() {
+      suite.add('filter+map for', function() {
         var results = [];
         for (var i = 0; i < array.length; i++) {
           if (array[i].number === 1) {
