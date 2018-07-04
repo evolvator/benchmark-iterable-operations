@@ -71,6 +71,14 @@ async.timesSeries(
         underscore.filter(array, option);
       });
     })();
+    
+    (function() {
+      var array = newArray();
+      var option = function(value) { return value.number === 1 };
+      suite.add('filter function', function() {
+        array.filter(option);
+      });
+    })();
 
     (function() {
       var array = newArray();
@@ -226,7 +234,7 @@ async.timesSeries(
         if (a.number < b.number) return -1;
         return 0;
       };
-      suite.add('sort', function() {
+      suite.add('sort function', function() {
         array.sort(option);
       });
     })();
