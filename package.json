@@ -9,7 +9,7 @@
     "async": "^2.6.1",
     "benchmark": "^2.1.4",
     "lodash": "^4.17.10",
-    "travis-benchmark": "^0.0.6",
+    "travis-benchmark": "^0.1.0",
     "underscore": "^1.9.1"
   }
 }
