@@ -2,7 +2,7 @@
 
 What is the speed difference between in iterated operations?
 
-[![Build Status](https://travis-ci.org/evolvator/benchmark-iterable-operations.svg?branch=master)](https://travis-ci.org/evolvator/benchmark-iterable-operations)
+[![Build Status](https://travis-ci.org/evolvator/benchmark-iterable-operations.svg?branch=code)](https://travis-ci.org/evolvator/benchmark-iterable-operations)
 
 [Executable code](https://github.com/evolvator/benchmark-iterable-operations/tree/code)
 
