@@ -2,6 +2,8 @@
 
 What is the speed difference between in iterated operations?
 
+## [DEPRICATED](https://github.com/orgs/evolvator/projects?utf8=%E2%9C%93&query=is%3Aclosed+Tasks+v0)
+
 [![Build Status](https://travis-ci.org/evolvator/benchmark-iterable-operations.svg?branch=code)](https://travis-ci.org/evolvator/benchmark-iterable-operations)
 
 [Executable code](https://github.com/evolvator/benchmark-iterable-operations/tree/code)
